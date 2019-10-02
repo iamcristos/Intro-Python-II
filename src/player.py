@@ -6,3 +6,6 @@ class Player:
         self.room = room
     def current_room(self):
         return self.room
+    def set_room(self,new_room):
+        self.room = new_room
+        return self.room
