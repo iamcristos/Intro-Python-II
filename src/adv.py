@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -49,3 +49,40 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player = Player('outside')
+
+for item in room:
+    # print(room['outside'].get_room_name())
+    # print(room['outside'].get_room_description())
+    print(player.current_room())
+    print(room[player.current_room()].get_room_description())
+    user_input = input('enter your next move: ')
+    try:
+        if user_input == 'n' and player.current_room() == 'outside':
+            player.set_room('foyer')
+        if user_input == 's' and player.current_room() == 'foyer':
+            player.set_room('outside')
+        if user_input == 'n' and player.current_room() == 'foyer':
+            player.set_room('overlook')
+        if user_input == 'e' and player.current_room() == 'foyer':
+            player.set_room('narrow')
+        if user_input == 's' and player.current_room() == 'overlook':
+            player.set_room('foyer')
+        if user_input == 'w' and player.current_room() == 'narrow':
+            player.set_room('foyer')
+        if user_input == 'n' and player.current_room() == 'narrow':
+            player.set_room('treasure')
+        if user_input == 's' and player.current_room() == 'treasure':
+            player.set_room('narrow')
+        if user_input == 'quit':
+            player.set_room('outside')
+            print('good bye')
+            break
+        else:
+            print('move not allowed')
+    except:
+        print('invalid input')
+    
+        
+    
